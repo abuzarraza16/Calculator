@@ -1,0 +1,193 @@
+/* ==========================================
+   My Calculator - style.css
+   ========================================== */
+
+/* 1. COLOR VARIABLES
+   We store colors here once and reuse them everywhere.
+   To change the theme later, you only edit this part. */
+   :root {
+    --bg-start: #0f172a;
+    --bg-end: #1e293b;
+    --calculator-bg: #111827;
+    --display-bg: #0b1220;
+    --button-bg: #1f2937;
+    --button-hover: #374151;
+    --function-bg: #334155;
+    --function-hover: #475569;
+    --operator-bg: #f59e0b;
+    --operator-hover: #fbbf24;
+    --equals-bg: #10b981;
+    --equals-hover: #34d399;
+    --text-main: #f9fafb;
+    --text-muted: #94a3b8;
+    --error: #f87171;
+  }
+  
+  /* 2. RESET
+     Browsers add default spacing. We remove it so we have full control.
+     box-sizing makes width calculations easier. */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* 3. PAGE BACKGROUND
+     We center the calculator in the middle of the screen. */
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+    color: var(--text-main);
+  }
+  
+  /* 4. THE CALCULATOR BODY */
+  .calculator {
+    width: 100%;
+    max-width: 360px;
+    padding: 20px;
+    border-radius: 24px;
+    background-color: var(--calculator-bg);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* 5. TITLE */
+  .title {
+    margin-bottom: 14px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  
+  /* 6. DISPLAY */
+  .display {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    min-height: 110px;
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background-color: var(--display-bg);
+    word-break: break-all;
+    text-align: right;
+  }
+  
+  .previous-operand {
+    min-height: 1.4rem;
+    font-size: 1rem;
+    color: var(--text-muted);
+  }
+  
+  .current-operand {
+    font-size: 2.4rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  
+  /* Used by JavaScript when something goes wrong (like divide by zero) */
+  .current-operand.error {
+    font-size: 1.3rem;
+    color: var(--error);
+  }
+  
+  /* 7. BUTTON GRID
+     4 equal columns. "1fr" means "one equal share of the space". */
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  
+  /* 8. BUTTONS */
+  .btn {
+    padding: 18px 0;
+    border: none;
+    border-radius: 14px;
+    background-color: var(--button-bg);
+    color: var(--text-main);
+    font-size: 1.25rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.15s, transform 0.1s;
+  }
+  
+  .btn:hover {
+    background-color: var(--button-hover);
+  }
+  
+  /* Pressed effect (mouse click or keyboard press) */
+  .btn:active,
+  .btn.pressed {
+    transform: scale(0.94);
+  }
+  
+  /* Function buttons: AC, DEL, %, +/- */
+  .btn.function {
+    background-color: var(--function-bg);
+    font-size: 1.1rem;
+  }
+  
+  .btn.function:hover {
+    background-color: var(--function-hover);
+  }
+  
+  /* Operator buttons: + - × ÷ */
+  .btn.operator {
+    background-color: var(--operator-bg);
+    color: #111827;
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+  
+  .btn.operator:hover {
+    background-color: var(--operator-hover);
+  }
+  
+  /* Equals button */
+  .btn.equals {
+    background-color: var(--equals-bg);
+    color: #052e1f;
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+  
+  .btn.equals:hover {
+    background-color: var(--equals-hover);
+  }
+  
+  /* Keyboard focus outline, helpful when using the Tab key */
+  .btn:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 2px;
+  }
+  
+  /* 9. RESPONSIVE DESIGN
+     These rules only apply on small screens such as mobile phones. */
+  @media (max-width: 400px) {
+    .calculator {
+      padding: 14px;
+      border-radius: 18px;
+    }
+  
+    .buttons {
+      gap: 8px;
+    }
+  
+    .btn {
+      padding: 14px 0;
+      font-size: 1.1rem;
+    }
+  
+    .current-operand {
+      font-size: 2rem;
+    }
+  }
